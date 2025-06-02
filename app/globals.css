@@ -4,6 +4,16 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-reactYellow: #ffc300;
+  --color-reactYellowLight: #ffd60a;
+  --color-reactBlue: #001d3d;
+  --color-reactBlack: #000814;
+  --color-darkText: #737373;
+  --color-reactbdWhite: #ffffff;
+  --color-reactbdBlack: #000000;
+  --color-reactbdDarkGray: #262626;
+  --color-raectbdGreen: #40be46;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -117,4 +127,14 @@
   body {
     @apply bg-background text-foreground;
   }
+  button {
+    @apply cursor-pointer;
+  }
+  .hoverEffect {
+    @apply ease-in-out duration-300;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
