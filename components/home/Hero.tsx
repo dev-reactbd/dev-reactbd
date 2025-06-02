@@ -10,16 +10,13 @@ const Hero = () => {
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#001d3d] mb-6">
             Essential Tools for
-            <span className="bg-gradient-to-r from-[#ffc300] to-[#ffd60a] bg-clip-text text-transparent">
-              {" "}
-              Digital Tasks
-            </span>
+            <span className="text-reactYellow"> Digital Tasks</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-[#737373] mb-8 max-w-3xl mx-auto">
+          <p className="text-xl sm:text-2xl text-reactbdLightText mb-8 max-w-3xl mx-auto">
             Explore our suite of free, user-friendly tools designed to simplify
             your digital workflow and boost productivity.
           </p>
-          <p className="text-lg text-[#737373] mb-10 max-w-2xl mx-auto">
+          <p className="text-lg text-reactbdLightText mb-10 max-w-2xl mx-auto">
             No sign-up required. Fast, reliable, and completely free to use.
           </p>
           <Link href={"#tools-section"}>
