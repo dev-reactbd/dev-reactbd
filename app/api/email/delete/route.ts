@@ -6,7 +6,7 @@ const emailAddresses = new Map<
   {
     created: Date;
     expires: Date;
-    emails: any[];
+    emails: [];
   }
 >();
 

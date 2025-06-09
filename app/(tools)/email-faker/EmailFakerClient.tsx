@@ -134,7 +134,7 @@ export default function EmailFakerClient() {
       }
 
       const data = await response.json();
-      const transformedEmails = (data.emails || []).map((email: any) => ({
+      const transformedEmails = (data.emails || []).map((email) => ({
         ...email,
         timestamp: new Date(email.timestamp || email.received_at || Date.now()),
       }));
@@ -166,6 +166,8 @@ export default function EmailFakerClient() {
         description: "The email address has been copied to your clipboard",
       });
     } catch (err) {
+      console.log("Error:", err);
+
       toast.error("Failed to copy email address", {
         description: "Please try selecting and copying manually",
       });

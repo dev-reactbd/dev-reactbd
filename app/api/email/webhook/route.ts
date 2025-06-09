@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
 
     // Handle attachments if present
     if (attachments && attachments.length > 0) {
-      const attachmentPromises = attachments.map(async (attachment: any) => {
+      const attachmentPromises = attachments.map(async (attachment) => {
         return supabase.from("attachments").insert({
           email_id: newEmail.id,
           filename: attachment.filename,

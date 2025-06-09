@@ -6,7 +6,7 @@ const emailAddresses = new Map<
   {
     created: Date;
     expires: Date;
-    emails: any[];
+    emails: [];
   }
 >();
 
@@ -102,7 +102,7 @@ export async function GET(request: NextRequest) {
             timestamp: new Date(email.received_at),
             isRead: email.is_read,
             attachments:
-              email.attachments?.map((att: any) => ({
+              email.attachments?.map((att) => ({
                 filename: att.filename,
                 contentType: att.content_type,
                 size: att.size,
