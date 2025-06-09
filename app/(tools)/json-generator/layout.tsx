@@ -2,7 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jsontools.dev"),
+  metadataBase: new URL("https://reactbd.org/json-generator"),
   title: {
     default: "ReactBD - Free Online JSON Generator, Formatter & Validator",
     template: "%s | JSON Tools Suite",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "JSON Tools Suite",
-      url: "https://reactbd.org/fake-json-generator",
+      url: "https://reactbd.org/json-generator",
     },
   ],
   creator: "JSON Tools Suite",

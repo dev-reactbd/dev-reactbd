@@ -229,7 +229,7 @@ const generateUserImage = (name: string) => {
   return `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodedName}`;
 };
 
-const generateProductImage = (product: string) => {
+const generateProductImage = () => {
   const productImages = [
     "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop",
     "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop",
@@ -639,7 +639,7 @@ export default function JSONGeneratorClient() {
       customFields.length > 0 ? customFields : getDefaultFields(dataType);
 
     for (let i = 0; i < recordCount; i++) {
-      let record: any = {};
+      let record = {};
 
       // Only generate base data if we have default fields or if fields include the base properties
       const hasDefaultFields = fieldsToUse.some((field) => field.isDefault);
@@ -752,7 +752,7 @@ export default function JSONGeneratorClient() {
       }
 
       // Generate data only for the fields that exist in customFields, respecting their order
-      const finalRecord: any = {};
+      const finalRecord = {};
       fieldsToUse.forEach((field) => {
         if (field.isDefault && record.hasOwnProperty(field.name)) {
           finalRecord[field.name] = record[field.name];
@@ -979,7 +979,7 @@ export default function JSONGeneratorClient() {
                     />
                     <Select
                       value={newField.type}
-                      onValueChange={(value: any) =>
+                      onValueChange={(value) =>
                         setNewField({ ...newField, type: value })
                       }
                     >
@@ -1114,7 +1114,9 @@ export default function JSONGeneratorClient() {
               <div className="flex items-center justify-center h-full text-center text-muted-foreground">
                 <div>
                   <div className="text-4xl mb-4">📄</div>
-                  <p>Click "Generate JSON Data" to create your data</p>
+                  <p>
+                    Click &quot;Generate JSON Data&quot; to create your data
+                  </p>
                 </div>
               </div>
             )}

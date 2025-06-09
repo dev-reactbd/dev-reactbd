@@ -39,6 +39,7 @@ export default function RootLayout({
         />
         <Script
           type="application/ld+json"
+          id="reactbd.org"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
