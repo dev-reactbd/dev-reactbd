@@ -43,7 +43,7 @@ export const metadata: Metadata = {
       "JSON Tools Suite - Free Online JSON Generator, Formatter & Validator",
     description:
       "Professional JSON tools suite with fake data generator, pretty formatter, validator, minifier, and CSV converter. Edit and manipulate JSON instantly in your browser.",
-    url: "https://jsontools.dev",
+    url: "https://reactbd.org/json-generator",
     siteName: "JSON Tools Suite",
     images: [
       {
@@ -71,7 +71,7 @@ export default function FakeJson() {
       description:
         "Pretty-print and format JSON with syntax highlighting. Upload files or paste JSON directly.",
       icon: FileText,
-      href: "/json-formatter",
+      href: "/json-generator/formatter",
       color: "bg-green-500",
     },
     {
@@ -79,7 +79,7 @@ export default function FakeJson() {
       description:
         "Validate JSON syntax with detailed error messages and success confirmations.",
       icon: Check,
-      href: "/json-validator",
+      href: "/json-generator/validator",
       color: "bg-emerald-500",
     },
     {
@@ -87,7 +87,7 @@ export default function FakeJson() {
       description:
         "Compress JSON by removing unnecessary whitespace and formatting.",
       icon: Minimize2,
-      href: "/json-minifier",
+      href: "/json-generator/minifier",
       color: "bg-orange-500",
     },
     {
@@ -95,13 +95,13 @@ export default function FakeJson() {
       description:
         "Convert JSON arrays to CSV format with download options for data analysis.",
       icon: FileSpreadsheet,
-      href: "/json-to-csv",
+      href: "/json-generator/json-to-csv",
       color: "bg-purple-500",
     },
   ];
 
   return (
-    <Container className="space-y-12">
+    <Container className="space-y-12 py-10">
       {/* Hero Section */}
       <div className="text-center space-y-6">
         <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">

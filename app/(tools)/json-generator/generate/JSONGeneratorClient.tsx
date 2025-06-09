@@ -40,6 +40,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import PageHeader from "@/components/common/page-header";
 
 // Utility functions for fake data generation
 const generateUUID = () => {
@@ -843,7 +844,8 @@ export default function JSONGeneratorClient() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 space-y-8">
+      <PageHeader title="Json Generator" />
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold">JSON Data Generator</h1>
         <p className="text-xl text-muted-foreground">
