@@ -13,7 +13,7 @@ const navData = [
   },
   {
     title: "JSON Generator",
-    href: "/fake-json-generator",
+    href: "/json-generator",
   },
   {
     title: "Contact Us",

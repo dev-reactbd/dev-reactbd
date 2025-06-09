@@ -37,6 +37,33 @@ export default function RootLayout({
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GADSENSE_CLIENT_ID}`}
           strategy="beforeInteractive"
         />
+        <Script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: "JSON Tools Suite",
+              description:
+                "Professional JSON tools suite with fake data generator, pretty formatter, validator, minifier, and CSV converter.",
+              url: "https://jsontools.dev",
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: "Any",
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "USD",
+              },
+              featureList: [
+                "JSON Data Generator",
+                "JSON Formatter",
+                "JSON Validator",
+                "JSON Minifier",
+                "JSON to CSV Converter",
+              ],
+            }),
+          }}
+        />
       </body>
     </html>
   );
