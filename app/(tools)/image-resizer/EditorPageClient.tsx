@@ -1,4 +1,5 @@
 "use client";
+import Container from "@/components/common/container";
 import { ImageEditor } from "@/components/image-editor/imageEditor";
 
 export default function EditorPageClient() {
@@ -35,9 +36,9 @@ export default function EditorPageClient() {
 
       <div className="min-h-screen bg-gray-50">
         {/* Editor */}
-        <main className="container mx-auto px-2 sm:px-4 py-3">
+        <Container className="py-5">
           <ImageEditor />
-        </main>
+        </Container>
       </div>
     </>
   );

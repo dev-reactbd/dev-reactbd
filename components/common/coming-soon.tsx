@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { clsx } from "clsx";
 import { ColorfulText } from "../ui/animation-ui/colorful-text";
-import Container from "./container";
 import Logo from "./Logo";
 
 // Add these gradient components
@@ -144,7 +143,7 @@ export default function ComingSoon({
   };
 
   return (
-    <Container className="flex flex-col items-center justify-center relative overflow-hidden py-10 md:py-20">
+    <div className="flex w-full flex-col items-center justify-center relative overflow-hidden py-10 md:py-20">
       {/* Custom gradient backgrounds */}
       <div className="absolute inset-0 -z-10">
         <Gradient className="absolute inset-0 opacity-80" />
@@ -241,6 +240,6 @@ export default function ComingSoon({
           </motion.div>
         )}
       </motion.div>
-    </Container>
+    </div>
   );
 }
