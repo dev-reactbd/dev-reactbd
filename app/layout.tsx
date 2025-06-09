@@ -24,12 +24,12 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <meta name="google-adsense-account" content={GADSENSE_CLIENT_ID} />
-        <Script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GADSENSE_CLIENT_ID}`}
-          strategy="beforeInteractive"
-        />
       </Head>
+      <Script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GADSENSE_CLIENT_ID}`}
+        strategy="beforeInteractive"
+      />
       <body className={`antialiased`}>
         <Navbar />
         {children}
