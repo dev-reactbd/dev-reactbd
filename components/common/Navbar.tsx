@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Logo from "./Logo";
 import { navData } from "@/constants/data";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathName = usePathname();
 
   return (
     <>
@@ -23,7 +25,11 @@ const Navbar = () => {
                   <Link
                     key={item?.title}
                     href={item?.href}
-                    className="text-reactBlack/70 hover:text-reactBlack px-3 py-2 text-sm font-medium transition-colors hoverEffect"
+                    className={` hover:text-reactBlack px-3 py-2 text-sm font-medium transition-colors hoverEffect ${
+                      pathName === item?.href
+                        ? "text-reactBlack underline underline-offset-2"
+                        : "text-reactBlack/70"
+                    }`}
                   >
                     {item?.title}
                   </Link>
