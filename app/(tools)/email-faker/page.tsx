@@ -1,8 +1,12 @@
-import ComingSoon from "@/components/common/coming-soon";
 import React from "react";
+import EmailFakerClient from "./EmailFakerClient";
 
 const EmailFaker = () => {
-  return <ComingSoon title="Email Faker" />;
+  return (
+    <div>
+      <EmailFakerClient />
+    </div>
+  );
 };
 
 export default EmailFaker;
