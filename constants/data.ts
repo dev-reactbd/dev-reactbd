@@ -3,8 +3,11 @@ import {
   FileSpreadsheet,
   FileText,
   GitCompare,
+  ImageIcon,
+  Mail,
   Minimize2,
   Settings,
+  Zap,
 } from "lucide-react";
 const navData = [
   {
@@ -31,11 +34,35 @@ const navData = [
 
 const toolsData = [
   {
+    title: "Image Converter",
+    description:
+      "Convert images between formats like JPG, PNG, WebP, and more with ease.",
+    icon: ImageIcon,
+    href: "https://reactbd.org/image-converter",
+    color: "bg-gradient-to-br from-blue-600 to-blue-800",
+  },
+  {
+    title: "Image Resizer",
+    description:
+      "Resize images to any dimension while preserving quality and aspect ratio.",
+    icon: Zap,
+    href: "https://reactbd.org/image-resizer",
+    color: "bg-gradient-to-br from-green-500 to-green-700",
+  },
+  {
+    title: "Email Faker",
+    description:
+      "Generate realistic fake email addresses for testing and development.",
+    icon: Mail,
+    href: "https://reactbd.org/email-faker",
+    color: "bg-gradient-to-br from-yellow-400 to-yellow-600",
+  },
+  {
     title: "JSON Generator",
     description:
       "Generate realistic fake JSON data with customizable fields and data types. Perfect for testing and prototyping.",
     icon: Settings,
-    href: "/json-generator/generate",
+    href: "https://reactbd.org/json-generator/generate",
     color: "bg-blue-500",
   },
   {
@@ -43,7 +70,7 @@ const toolsData = [
     description:
       "Pretty-print and format JSON with syntax highlighting. Upload files or paste JSON directly.",
     icon: FileText,
-    href: "/json-generator/formatter",
+    href: "https://reactbd.org/json-generator/formatter",
     color: "bg-green-500",
   },
   {
@@ -51,7 +78,7 @@ const toolsData = [
     description:
       "Validate JSON syntax with detailed error messages and success confirmations.",
     icon: Check,
-    href: "/json-generator/validator",
+    href: "https://reactbd.org/json-generator/validator",
     color: "bg-emerald-500",
   },
   {
@@ -59,7 +86,7 @@ const toolsData = [
     description:
       "Compress JSON by removing unnecessary whitespace and formatting.",
     icon: Minimize2,
-    href: "/json-generator/minifier",
+    href: "https://reactbd.org/json-generator/minifier",
     color: "bg-orange-500",
   },
   {
@@ -67,7 +94,7 @@ const toolsData = [
     description:
       "Convert JSON arrays to CSV format with download options for data analysis.",
     icon: FileSpreadsheet,
-    href: "/json-generator/json-to-csv",
+    href: "https://reactbd.org/json-generator/json-to-csv",
     color: "bg-purple-500",
   },
   {
@@ -75,8 +102,9 @@ const toolsData = [
     description:
       "Compare two JSON objects to find differences, missing keys, and similarities.",
     icon: GitCompare,
-    href: "/json-generator/json-compare",
+    href: "https://reactbd.org/json-generator/json-compare",
     color: "bg-red-500",
   },
 ];
+
 export { navData, toolsData };
