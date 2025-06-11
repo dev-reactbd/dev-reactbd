@@ -9,6 +9,7 @@ import {
   Minimize2,
   FileSpreadsheet,
   ArrowRight,
+  GitCompare,
 } from "lucide-react";
 import Container from "@/components/common/container";
 
@@ -97,6 +98,14 @@ export default function FakeJson() {
       icon: FileSpreadsheet,
       href: "/json-generator/json-to-csv",
       color: "bg-purple-500",
+    },
+    {
+      title: "JSON Compare",
+      description:
+        "Compare two JSON objects to find differences, missing keys, and similarities.",
+      icon: GitCompare,
+      href: "/json-generator/json-compare",
+      color: "bg-red-500",
     },
   ];
 
