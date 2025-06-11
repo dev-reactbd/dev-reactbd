@@ -369,7 +369,8 @@ export default function JSONMinifierClient() {
                     Minified JSON will appear here
                   </p>
                   <p className="text-sm">
-                    Paste JSON in the input area and click "Minify JSON"
+                    Paste JSON in the input area and click &quot;Minify
+                    JSON&quot;
                   </p>
                 </div>
               </div>

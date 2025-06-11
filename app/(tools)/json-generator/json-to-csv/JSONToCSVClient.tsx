@@ -17,6 +17,10 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import BenefitsSection from "@/components/common/BenefitsSection";
 
+interface DataRow {
+  [key: string]: string | number | boolean | null | undefined | object;
+}
+
 // JSON Syntax Highlighter with Line Numbers
 const JSONHighlighter = ({
   json,
@@ -186,7 +190,7 @@ export default function JSONToCSVClient() {
   const [csvData, setCsvData] = useState("");
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
-  const [previewData, setPreviewData] = useState<any[]>([]);
+  const [previewData, setPreviewData] = useState<DataRow[]>([]);
   const [inputLineWrap, setInputLineWrap] = useState(false);
   const [outputLineWrap, setOutputLineWrap] = useState(false);
 
@@ -449,7 +453,7 @@ export default function JSONToCSVClient() {
                     CSV output will appear here
                   </p>
                   <p className="text-sm">
-                    Paste a JSON array and click "Convert to CSV"
+                    Paste a JSON array and click &quot;Convert to CSV&quot;
                   </p>
                 </div>
               </div>
