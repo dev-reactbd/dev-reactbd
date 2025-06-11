@@ -258,7 +258,7 @@ export default function JSONValidatorClient() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Input Panel */}
-        <Card className="flex flex-col h-[70vh]">
+        <Card className="flex flex-col h-[90vh]">
           <CardHeader className="flex-shrink-0">
             <div className="flex items-center justify-between">
               <CardTitle>JSON Input</CardTitle>
@@ -316,7 +316,7 @@ export default function JSONValidatorClient() {
         </Card>
 
         {/* Output Panel */}
-        <Card className="flex flex-col h-[70vh]">
+        <Card className="flex flex-col h-[90vh]">
           <CardHeader className="flex-shrink-0">
             <CardTitle>Validation Result</CardTitle>
           </CardHeader>
