@@ -30,7 +30,6 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
-  type DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -42,8 +41,58 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import PageHeader from "@/components/common/page-header";
 
+// Type Definitions
+interface CustomField {
+  id: string;
+  name: string;
+  type:
+    | "string"
+    | "number"
+    | "boolean"
+    | "email"
+    | "url"
+    | "date"
+    | "array"
+    | "object";
+  min?: number;
+  max?: number;
+  length?: number;
+  isDefault?: boolean;
+}
+
+interface JSONHighlighterProps {
+  json: string;
+  colored: boolean;
+}
+
+interface SortableFieldItemProps {
+  field: CustomField;
+  onRemove: () => void;
+}
+
+type OutputFormat = "array" | "object";
+
+type DataType =
+  | "users"
+  | "products"
+  | "todos"
+  | "posts"
+  | "comments"
+  | "categories"
+  | "carts"
+  | "recipes";
+
+interface GeneratedRecord {
+  [key: string]: string | number | boolean | string[] | object | null;
+}
+
+interface DragEndEvent {
+  active: { id: string };
+  over: { id: string } | null;
+}
+
 // Utility functions for fake data generation
-const generateUUID = () => {
+const generateUUID = (): string => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
     const r = (Math.random() * 16) | 0;
     const v = c === "x" ? r : (r & 0x3) | 0x8;
@@ -51,7 +100,7 @@ const generateUUID = () => {
   });
 };
 
-const generateRandomName = () => {
+const generateRandomName = (): string => {
   const firstNames = [
     "John",
     "Jane",
@@ -91,7 +140,7 @@ const generateRandomName = () => {
   }`;
 };
 
-const generateRandomEmail = (name?: string) => {
+const generateRandomEmail = (name?: string): string => {
   const domains = [
     "gmail.com",
     "yahoo.com",
@@ -105,7 +154,7 @@ const generateRandomEmail = (name?: string) => {
   return `${username}@${domains[Math.floor(Math.random() * domains.length)]}`;
 };
 
-const generateRandomProduct = () => {
+const generateRandomProduct = (): string => {
   const products = [
     "Laptop",
     "Smartphone",
@@ -145,7 +194,7 @@ const generateRandomProduct = () => {
   }`;
 };
 
-const generateRandomCategory = () => {
+const generateRandomCategory = (): string => {
   const categories = [
     "Electronics",
     "Clothing",
@@ -166,7 +215,7 @@ const generateRandomCategory = () => {
   return categories[Math.floor(Math.random() * categories.length)];
 };
 
-const generateRandomTitle = () => {
+const generateRandomTitle = (): string => {
   const titles = [
     "Getting Started with React",
     "10 Tips for Better Code",
@@ -182,7 +231,7 @@ const generateRandomTitle = () => {
   return titles[Math.floor(Math.random() * titles.length)];
 };
 
-const generateRandomContent = () => {
+const generateRandomContent = (): string => {
   const contents = [
     "This is a comprehensive guide that covers all the essential concepts you need to know.",
     "Learn the fundamentals and advanced techniques with practical examples and real-world applications.",
@@ -193,7 +242,7 @@ const generateRandomContent = () => {
   return contents[Math.floor(Math.random() * contents.length)];
 };
 
-const generateRandomRecipe = () => {
+const generateRandomRecipe = (): string => {
   const recipes = [
     "Chocolate Chip Cookies",
     "Spaghetti Carbonara",
@@ -209,7 +258,7 @@ const generateRandomRecipe = () => {
   return recipes[Math.floor(Math.random() * recipes.length)];
 };
 
-const generateRandomIngredient = () => {
+const generateRandomIngredient = (): string => {
   const ingredients = [
     "2 cups flour",
     "1 cup sugar",
@@ -225,12 +274,12 @@ const generateRandomIngredient = () => {
   return ingredients[Math.floor(Math.random() * ingredients.length)];
 };
 
-const generateUserImage = (name: string) => {
+const generateUserImage = (name: string): string => {
   const encodedName = encodeURIComponent(name);
   return `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodedName}`;
 };
 
-const generateProductImage = () => {
+const generateProductImage = (): string => {
   const productImages = [
     "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop",
     "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop",
@@ -244,7 +293,7 @@ const generateProductImage = () => {
   return productImages[Math.floor(Math.random() * productImages.length)];
 };
 
-const generateRecipeImage = () => {
+const generateRecipeImage = (): string => {
   const recipeImages = [
     "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=300&fit=crop",
     "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=300&h=300&fit=crop",
@@ -256,18 +305,12 @@ const generateRecipeImage = () => {
 };
 
 // JSON Syntax Highlighter Component
-const JSONHighlighter = ({
-  json,
-  colored,
-}: {
-  json: string;
-  colored: boolean;
-}) => {
+const JSONHighlighter = ({ json, colored }: JSONHighlighterProps) => {
   if (!colored) {
     return <code className="text-sm">{json}</code>;
   }
 
-  const highlightJSON = (jsonString: string) => {
+  const highlightJSON = (jsonString: string): string => {
     return jsonString.replace(
       /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g,
       (match) => {
@@ -298,32 +341,8 @@ const JSONHighlighter = ({
   );
 };
 
-interface CustomField {
-  id: string;
-  name: string;
-  type:
-    | "string"
-    | "number"
-    | "boolean"
-    | "email"
-    | "url"
-    | "date"
-    | "array"
-    | "object";
-  min?: number;
-  max?: number;
-  length?: number;
-  isDefault?: boolean;
-}
-
 // Sortable Field Item Component
-function SortableFieldItem({
-  field,
-  onRemove,
-}: {
-  field: CustomField;
-  onRemove: () => void;
-}) {
+function SortableFieldItem({ field, onRemove }: SortableFieldItemProps) {
   const {
     attributes,
     listeners,
@@ -388,19 +407,19 @@ function SortableFieldItem({
 }
 
 export default function JSONGeneratorClient() {
-  const [dataType, setDataType] = useState("users");
-  const [outputFormat, setOutputFormat] = useState<"array" | "object">("array");
-  const [recordCount, setRecordCount] = useState(10);
+  const [dataType, setDataType] = useState<DataType>("users");
+  const [outputFormat, setOutputFormat] = useState<OutputFormat>("array");
+  const [recordCount, setRecordCount] = useState<number>(10);
   const [customFields, setCustomFields] = useState<CustomField[]>([]);
-  const [generatedJSON, setGeneratedJSON] = useState("");
+  const [generatedJSON, setGeneratedJSON] = useState<string>("");
   const [newField, setNewField] = useState<CustomField>({
     id: "",
     name: "",
     type: "string",
   });
-  const [copied, setCopied] = useState(false);
-  const [syntaxHighlighting, setSyntaxHighlighting] = useState(true);
-  const [lineWrap, setLineWrap] = useState(false);
+  const [copied, setCopied] = useState<boolean>(false);
+  const [syntaxHighlighting, setSyntaxHighlighting] = useState<boolean>(true);
+  const [lineWrap, setLineWrap] = useState<boolean>(false);
 
   // Set up DnD sensors
   const sensors = useSensors(
@@ -415,8 +434,8 @@ export default function JSONGeneratorClient() {
   );
 
   // Get default fields for each data type
-  const getDefaultFields = (type: string): CustomField[] => {
-    const defaultFields: Record<string, CustomField[]> = {
+  const getDefaultFields = (type: DataType): CustomField[] => {
+    const defaultFields: Record<DataType, CustomField[]> = {
       users: [
         { id: "user-id", name: "id", type: "string", isDefault: true },
         { id: "user-name", name: "name", type: "string", isDefault: true },
@@ -620,7 +639,7 @@ export default function JSONGeneratorClient() {
     }
   }, [outputFormat]);
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragEnd = (event: DragEndEvent): void => {
     const { active, over } = event;
 
     if (over && active.id !== over.id) {
@@ -633,14 +652,14 @@ export default function JSONGeneratorClient() {
     }
   };
 
-  const generateData = () => {
-    const data = [];
+  const generateData = (): void => {
+    const data: GeneratedRecord[] = [];
     // Use current fields (including removed defaults) or fallback to defaults if no fields exist
-    const fieldsToUse =
+    const fieldsToUse: CustomField[] =
       customFields.length > 0 ? customFields : getDefaultFields(dataType);
 
     for (let i = 0; i < recordCount; i++) {
-      let record = {};
+      let record: GeneratedRecord = {};
 
       // Only generate base data if we have default fields or if fields include the base properties
       const hasDefaultFields = fieldsToUse.some((field) => field.isDefault);
@@ -662,7 +681,7 @@ export default function JSONGeneratorClient() {
             name: productName,
             price: Math.floor(Math.random() * 990) + 10,
             category: generateRandomCategory(),
-            image: generateProductImage(productName),
+            image: generateProductImage(),
             inStock: Math.random() > 0.2,
           };
         } else if (dataType === "todos") {
@@ -753,8 +772,8 @@ export default function JSONGeneratorClient() {
       }
 
       // Generate data only for the fields that exist in customFields, respecting their order
-      const finalRecord = {};
-      fieldsToUse.forEach((field) => {
+      const finalRecord: GeneratedRecord = {};
+      fieldsToUse.forEach((field: CustomField) => {
         if (field.isDefault && record.hasOwnProperty(field.name)) {
           finalRecord[field.name] = record[field.name];
         } else if (!field.isDefault) {
@@ -787,7 +806,7 @@ export default function JSONGeneratorClient() {
                 .split("T")[0];
               break;
             case "array":
-              finalRecord[field.name] = [`item1`, `item2`, `item3`];
+              finalRecord[field.name] = ["item1", "item2", "item3"];
               break;
             case "object":
               finalRecord[field.name] = { key: "value", nested: true };
@@ -800,7 +819,7 @@ export default function JSONGeneratorClient() {
     }
 
     // Format output based on selection
-    let output;
+    let output: GeneratedRecord[] | { [key: string]: GeneratedRecord };
     if (outputFormat === "array") {
       output = data;
     } else {
@@ -815,7 +834,7 @@ export default function JSONGeneratorClient() {
     setGeneratedJSON(JSON.stringify(output, null, 2));
   };
 
-  const addCustomField = () => {
+  const addCustomField = (): void => {
     if (newField.name) {
       const fieldId = `custom-${newField.name}-${Date.now()}`;
       setCustomFields([...customFields, { ...newField, id: fieldId }]);
@@ -823,17 +842,17 @@ export default function JSONGeneratorClient() {
     }
   };
 
-  const removeCustomField = (index: number) => {
+  const removeCustomField = (index: number): void => {
     setCustomFields(customFields.filter((_, i) => i !== index));
   };
 
-  const copyToClipboard = async () => {
+  const copyToClipboard = async (): Promise<void> => {
     await navigator.clipboard.writeText(generatedJSON);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const downloadJSON = () => {
+  const downloadJSON = (): void => {
     const blob = new Blob([generatedJSON], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -883,7 +902,7 @@ export default function JSONGeneratorClient() {
                 <Label htmlFor="outputFormat">Output Format</Label>
                 <Select
                   value={outputFormat}
-                  onValueChange={(value: "array" | "object") =>
+                  onValueChange={(value: OutputFormat) =>
                     setOutputFormat(value)
                   }
                 >
@@ -981,7 +1000,7 @@ export default function JSONGeneratorClient() {
                     />
                     <Select
                       value={newField.type}
-                      onValueChange={(value) =>
+                      onValueChange={(value: CustomField["type"]) =>
                         setNewField({ ...newField, type: value })
                       }
                     >

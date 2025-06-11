@@ -1,4 +1,5 @@
-import { useRouter } from "next/navigation"; // Import useRouter
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { Button } from "../ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -8,7 +9,7 @@ interface Props {
 }
 
 const PageHeader = ({ title }: Props) => {
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
