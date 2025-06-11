@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { Button } from "../ui/button";
 import { ArrowLeft } from "lucide-react";
+import Container from "./container";
 
 interface Props {
   title: string;
@@ -13,7 +14,7 @@ const PageHeader = ({ title }: Props) => {
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-3">
+      <Container className="py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Button
@@ -32,7 +33,7 @@ const PageHeader = ({ title }: Props) => {
             </h1>
           </div>
         </div>
-      </div>
+      </Container>
     </header>
   );
 };
