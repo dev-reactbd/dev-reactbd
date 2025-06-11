@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JSONFormatterClient from "./JSONFormatterClient";
+import PageHeader from "@/components/common/page-header";
 
 export const metadata: Metadata = {
   title: "JSON Formatter & Pretty Printer - Format JSON Online | JSON Tools",
@@ -26,5 +27,10 @@ export const metadata: Metadata = {
 };
 
 export default function JSONFormatterPage() {
-  return <JSONFormatterClient />;
+  return (
+    <>
+      <PageHeader title="JSON Formatter" />
+      <JSONFormatterClient />
+    </>
+  );
 }
