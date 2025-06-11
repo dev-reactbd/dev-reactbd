@@ -1,17 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  Settings,
-  FileText,
-  Check,
-  Minimize2,
-  FileSpreadsheet,
-  ArrowRight,
-  GitCompare,
-} from "lucide-react";
 import Container from "@/components/common/container";
+import JSONCard from "@/components/pages/tools/JSONCard";
 
 export const metadata: Metadata = {
   title: "JSON Tools Suite - Free Online JSON Generator, Formatter & Validator",
@@ -58,57 +49,6 @@ export const metadata: Metadata = {
 };
 
 export default function FakeJson() {
-  const tools = [
-    {
-      title: "JSON Generator",
-      description:
-        "Generate realistic fake JSON data with customizable fields and data types. Perfect for testing and prototyping.",
-      icon: Settings,
-      href: "/json-generator/generate",
-      color: "bg-blue-500",
-    },
-    {
-      title: "JSON Formatter",
-      description:
-        "Pretty-print and format JSON with syntax highlighting. Upload files or paste JSON directly.",
-      icon: FileText,
-      href: "/json-generator/formatter",
-      color: "bg-green-500",
-    },
-    {
-      title: "JSON Validator",
-      description:
-        "Validate JSON syntax with detailed error messages and success confirmations.",
-      icon: Check,
-      href: "/json-generator/validator",
-      color: "bg-emerald-500",
-    },
-    {
-      title: "JSON Minifier",
-      description:
-        "Compress JSON by removing unnecessary whitespace and formatting.",
-      icon: Minimize2,
-      href: "/json-generator/minifier",
-      color: "bg-orange-500",
-    },
-    {
-      title: "JSON to CSV",
-      description:
-        "Convert JSON arrays to CSV format with download options for data analysis.",
-      icon: FileSpreadsheet,
-      href: "/json-generator/json-to-csv",
-      color: "bg-purple-500",
-    },
-    {
-      title: "JSON Compare",
-      description:
-        "Compare two JSON objects to find differences, missing keys, and similarities.",
-      icon: GitCompare,
-      href: "/json-generator/json-compare",
-      color: "bg-red-500",
-    },
-  ];
-
   return (
     <Container className="space-y-12 py-10">
       {/* Hero Section */}
@@ -135,37 +75,7 @@ export default function FakeJson() {
       </div>
 
       {/* Tools Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {tools.map((tool, index) => {
-          const IconComponent = tool.icon;
-          return (
-            <Card
-              key={index}
-              className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            >
-              <CardHeader>
-                <div className="flex items-center space-x-3">
-                  <div className={`p-2 rounded-lg ${tool.color} text-white`}>
-                    <IconComponent className="w-6 h-6" />
-                  </div>
-                  <CardTitle className="text-xl">{tool.title}</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground line-clamp-4 h-24">
-                  {tool.description}
-                </p>
-                <Link href={tool.href}>
-                  <Button className="w-full group-hover:bg-primary/90 transition-colors">
-                    Get Started
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
+      <JSONCard />
 
       {/* Features Section */}
       <div className="bg-muted/50 p-8 rounded-2xl">
